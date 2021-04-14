@@ -2,7 +2,7 @@ import * as React from "react";
 import qs from "qs";
 import { SearchPanel } from "./search-panel";
 import { List } from "./list";
-import { cleanObject, useDebouncce, useMount } from "utils";
+import { cleanObject, useDebounce, useMount } from "utils";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -13,7 +13,7 @@ export const ProjectListScreen = () => {
   });
   const [list, setList] = React.useState([]);
   const [users, setUsers] = React.useState([]);
-  const debouncedParam = useDebouncce(param, 2000);
+  const debouncedParam = useDebounce(param, 2000);
 
   useMount(() => {
     fetch(`${apiUrl}/users`).then(async (res) => {
