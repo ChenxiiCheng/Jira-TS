@@ -1,13 +1,15 @@
 import * as React from "react";
 
-export const isFalsy = (value) => (value === 0 ? false : !value);
+export const isFalsy = (value: any) => (value === 0 ? false : !value);
 
-export const cleanObject = (object) => {
+export const cleanObject = (object: object) => {
   const result = { ...object };
 
   Object.keys(result).forEach((key) => {
+    // @ts-ignore
     const value = result[key];
     if (isFalsy(value)) {
+      // @ts-ignore
       delete result[key];
     }
   });
@@ -15,13 +17,13 @@ export const cleanObject = (object) => {
   return result;
 };
 
-export const useMount = (callback) => {
+export const useMount = (callback: () => void) => {
   React.useEffect(() => {
     callback();
   }, []);
 };
 
-export const useDebounce = (value, delay) => {
+export const useDebounce = (value: any, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = React.useState(value);
 
   React.useEffect(() => {
