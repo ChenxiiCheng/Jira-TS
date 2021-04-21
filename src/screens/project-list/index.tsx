@@ -1,5 +1,5 @@
 import * as React from "react";
-import qs from "qs";
+import styled from "@emotion/styled";
 import { SearchPanel } from "./search-panel";
 import { List } from "./list";
 import { cleanObject, useDebounce, useMount } from "utils";
@@ -26,9 +26,14 @@ export const ProjectListScreen = () => {
   }, [debouncedParam]);
 
   return (
-    <div>
+    <Container>
+      <h1>项目列表</h1>
       <SearchPanel param={param} setParam={setParam} users={users} />
       <List list={list} users={users} />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  padding: 3.2rem;
+`;
