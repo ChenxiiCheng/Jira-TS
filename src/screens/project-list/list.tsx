@@ -3,7 +3,7 @@ import { Table } from "antd";
 import dayjs from "dayjs";
 import { User } from "./search-panel";
 
-interface Project {
+export interface Project {
   id: string;
   name: string;
   personId: string;
@@ -15,11 +15,13 @@ interface Project {
 interface ListProps {
   list: Project[];
   users: User[];
+  loading: boolean;
 }
 
-export const List = ({ list, users }: ListProps) => {
+export const List = ({ list, users, loading }: ListProps) => {
   return (
     <Table
+      loading={loading}
       pagination={false}
       dataSource={list}
       columns={[
