@@ -2,6 +2,9 @@ import * as React from "react";
 import { useAuth } from "context/auth-context";
 import { AuthenticatedApp } from "authenticatted-app";
 import { UnauthenticatedApp } from "unauthenticated-app";
+import { ErrorBoundary } from "components/error-boundary";
+import { FullPageErrorFallback } from "components/lib";
+
 import "./App.css";
 
 function App() {
@@ -9,7 +12,9 @@ function App() {
 
   return (
     <div className="App">
-      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+        {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      </ErrorBoundary>
     </div>
   );
 }
