@@ -53,3 +53,22 @@ export const useArray = <T>(initialArray: T[]) => {
 
   return { value, setValue, add, clear, removeIndex };
 };
+
+export const useDocumentTitle = (
+  title: string,
+  keepOnUnmount: boolean = true
+) => {
+  const oldTitle = React.useRef(document.title).current;
+
+  React.useEffect(() => {
+    return () => {
+      if (!keepOnUnmount) {
+        document.title = oldTitle;
+      }
+    };
+  }, [keepOnUnmount, oldTitle]);
+
+  React.useEffect(() => {
+    document.title = title;
+  }, [title]);
+};
